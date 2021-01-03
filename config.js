@@ -18,8 +18,8 @@ const getUsers = (request, response) => {
   });
 };
 const getUserbyId = (request, response) => {
-  const { id } = request.body;
-  pool.query("SELECT name FROM users WHERE id=$1", [id], (error, res) => {
+  const id = request.params.id;
+  pool.query("SELECT * FROM users WHERE id=$1", [id], (error, res) => {
     if (error) {
       throw error;
     }
