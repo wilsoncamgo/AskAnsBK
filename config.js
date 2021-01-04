@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const { request } = require('express')
 const { Pool } = require('pg')
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -24,6 +25,15 @@ const getTopics = (request, response) => {
     }
     response.status(200).json(results.rows);
   })
+}
+const getQuestionsbyTopic = (request, response) => {
+  const idTopic = request.params.id;
+  pool.query("SELECT * FROM questions WHERE topic_id=$1", [idTopic], (error, res) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(res.rows);
+  });
 }
 const getUserbyId = (request, response) => {
   const id = request.params.id;
@@ -50,8 +60,8 @@ const addUser = (request, response) => {
   );
 };
 module.exports = {
-  getUsers,
   getUserbyId,
   addUser,
-  getTopics
+  getTopics,
+  getQuestionsbyTopic
 }

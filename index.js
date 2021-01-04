@@ -21,8 +21,8 @@ const origin = {
 
 app.use(cors(origin));
 
-app.get('/users', db.getUsers)
 app.get('/users/:id',db.getUserbyId)
+app.get('/topics/:idTopic', db.getQuestionsbyTopic)
 app.get('/topics', db.getTopics)
 app.post('/users', db.addUser)
 
