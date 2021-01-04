@@ -23,6 +23,7 @@ app.use(cors(origin));
 
 app.get('/users', db.getUsers)
 app.get('/users/:id',db.getUserbyId)
+app.get('/topics', db.getTopics)
 app.post('/users', db.addUser)
 
 // Start server

@@ -15,7 +15,7 @@ CREATE TABLE questions(
     question VARCHAR(500) NOT NULL,
     date_sumb DATE NOT NULL,
     FOREIGN KEY (topic_id)
-        REFERENCES topic(id)
+        REFERENCES topics(id)
         ON UPDATE RESTRICT,
     FOREIGN KEY(user_id)
         REFERENCES users(id)

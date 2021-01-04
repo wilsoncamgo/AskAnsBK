@@ -17,6 +17,14 @@ const getUsers = (request, response) => {
     response.status(200).json(results.rows);
   });
 };
+const getTopics = (request, response) => {
+  pool.query("SELECT * FROM topics", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  })
+}
 const getUserbyId = (request, response) => {
   const id = request.params.id;
   pool.query("SELECT * FROM users WHERE id=$1", [id], (error, res) => {
@@ -44,5 +52,6 @@ const addUser = (request, response) => {
 module.exports = {
   getUsers,
   getUserbyId,
-  addUser
+  addUser,
+  getTopics
 }
