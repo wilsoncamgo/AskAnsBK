@@ -23,6 +23,7 @@ app.use(cors(origin));
 
 app.get('/users/:id',db.getUserbyId)
 app.get('/topics/:idTopic', db.getQuestionsbyTopic)
+app.post('/questions', db.addQuestion)
 app.get('/topics', db.getTopics)
 app.post('/users', db.addUser)
 

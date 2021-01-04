@@ -45,6 +45,19 @@ const getUserbyId = (request, response) => {
   });
 };
 
+const addQuestion = (request, response) => {
+  const { user_id, topic_id, question, date_sumb } = request.body;
+  pool.query(
+    "INSERT INTO questions (user_id, topic_id, question, date_sumb) VALUES ($1, $2, $3, $4)",
+    [user_id, topic_id, question, date_sumb],
+    (error) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).json({ status: "success", message: "Question Added added." });
+    }
+  );
+}
 const addUser = (request, response) => {
   const { id, name } = request.body;
 
@@ -63,5 +76,6 @@ module.exports = {
   getUserbyId,
   addUser,
   getTopics,
-  getQuestionsbyTopic
+  getQuestionsbyTopic,
+  addQuestion
 }
