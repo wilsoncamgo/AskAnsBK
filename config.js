@@ -27,7 +27,7 @@ const getTopics = (request, response) => {
   })
 }
 const getQuestionsbyTopic = (request, response) => {
-  const idTopic = parseInt(request.params.id);
+  const idTopic = parseInt(request.params.idTopic);
   pool.query("SELECT * FROM questions WHERE topic_id=$1", [idTopic], (error, res) => {
     if (error) {
       throw error;
